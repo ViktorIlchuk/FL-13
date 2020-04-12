@@ -1,0 +1,238 @@
+
+@function color($key) {
+    @if map-has-key($colorsVaribles, $key) {
+        @return map-get($colorsVaribles, $key);
+    }
+  
+    @warn "Unknown `#{$key}` in $colorsVaribles.";
+    @return null;
+  }
+
+@mixin underLine {
+    content: '';
+    position: absolute;
+    z-index: -100;
+    border-bottom: 35px solid color(underlineColor);
+}  
+
+@mixin button {
+    background-color: color(buttonColor);
+    display: block;
+    box-sizing: border-box;
+    width: 120px;
+    height: 40px;
+    border: none;
+    font-size: 12px;
+    border-radius: 1px;
+    color: #ffffff;
+}
+
+@mixin link {
+    display: block;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+    font-family: 'Hind', sans-serif;
+    color: color(fontColor);
+    background-color: color(mainBg);
+  }
+
+.header {
+    background-image: $backgroundImg;
+    color: color(fontColor);
+    padding: 0 35vw 20vh 10vw;
+    background-position: center;
+    background-size: cover;
+    border-radius: 0 0 40% 0;
+    background-color: color(mainBg);
+    button {
+        @include button;
+    }
+    a {
+        @include link;
+        margin-left: 10vw;
+    }
+}
+
+.header-wrap div {
+    display: flex;
+}
+
+.landing-logo {
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    img {
+        width: 2.5vw;
+        height: 2.5vw;
+    }
+    p {
+        display: flex;
+        flex-direction: column;
+        margin: 1vw;
+        font-style: 15px;
+        letter-spacing: 1px;
+        line-height: 1;
+        span{
+            font-size: 9px;
+            text-align: center;
+            letter-spacing: 0;
+        }
+    }
+}
+
+.header_heading {
+    font-size: 50px;
+    padding-right: 40%;
+    margin: 40px 0;
+    line-height: 1;
+    font-family: $headerFont;
+    font-weight: bold;
+    position: relative;
+    z-index: 100;
+    &:after {
+        @include underLine;
+        width: 210px;
+        top: 64%;
+        left: 0;
+    }
+}
+
+.header_text{
+    margin: 11vh 0 10vh 0;
+    font-weight: lighter;
+    line-height: 1.5;
+    font-size: 11px;  
+    white-space: pre-line;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .section_text {
+        text-align: center;
+        font-size: 35px;  
+        position: relative;
+        z-index: 100;
+        &:after {
+            @include underLine;
+            width: 157px;
+            right: 2%;
+            top: 4px;
+        }
+    }
+}
+
+.section_card_wrap {
+    width: 58%;
+    margin-bottom: 30px;
+    .section_card {
+        display: flex;
+        background: color(sectionCardBackground);
+        padding: 1vw;
+        margin-bottom: 2vw;
+        border-radius: 7px;
+        .section_card_img {
+            border-radius: 5px;
+        }
+        .section_card_right_container {
+            padding: 1vw 6vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .section_card_heading {
+                color: #ffffff;
+                margin: 0;
+                font-size: 20px;
+            }
+            .section_card_text {
+                color: lightgray;
+                font-size: 12px;
+                font-weight: lighter;
+                text-align: justify;
+            }
+            a {
+                @include link;
+                color: lightgray;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.section_banner {
+    position: relative;
+    display: flex;
+    background: linear-gradient(0.25turn, color(banerGradientLeft), color(banerGradientRight));
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    width: 64%;
+    top: 4.2vw;
+    z-index: 100;
+    .section_banner_heading{
+        font-size: 22px;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+        font-weight: 800;
+        color: color(fontColor);
+        position: relative;
+        z-index: 100;
+        &::after {
+            @include underLine;
+            width: 49px;
+            right: 55%;
+            bottom: 25%;
+        }
+    }
+    .section_banner_text{
+        font-size: 11px;
+        margin-bottom: 30px;
+        color: lightgray;
+    }
+    .section_banner_button{
+        @include button;
+        width: 110px;
+        height: 35px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
+
+.footer {
+    background-color: color(sectionCardBackground);
+    color: lightgray;
+    font-weight: 500;
+    padding: 80px 10% 35px 10%;
+    position: absolute;
+    width: 100vw;
+    display: block;
+    box-sizing: border-box;
+    z-index: -100;
+    .footer-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .footer_logo {
+            @extend .landing-logo;
+        }
+        .footer_text {
+            width: 25%;
+            font-size: 12.5px;
+            line-height: 1;
+            line-height: 1.4;
+        }
+        .footer-cr {
+            font-size: 12.5px;        
+        }
+    }
+}
+
+
+
+
