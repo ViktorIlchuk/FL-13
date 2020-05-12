@@ -1,0 +1,70 @@
+#root {
+    font-family: Arial;
+}
+
+i {
+    float: left;
+    color: rgb(216, 164, 41);
+}
+
+p {
+    padding: 5px;
+}
+
+div {
+    min-height: 24px;
+    padding-left: 15px;
+}
+
+.hideChildren > .node {
+    display: none;
+}
+
+
+.grey {
+    color: grey;
+}
+
+.highlight, .highlight2 {
+    cursor: pointer;
+}
+
+.highlight:hover {
+    background-color: #f5f5f5;
+}
+
+.highlight2 {
+    font-style: italic;
+}
+
+.right-click-menu {
+    margin: 0;
+    padding: 10px;
+    position: fixed;
+    border-radius: 2px;
+    width: 150px;
+    background-color: #fafafa;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.right-click-menu p {
+    margin: 0;
+}
+
+.right-click-menu p:hover {
+    background-color: #f5f5f5;
+}
+
+.right-click-menu.active {
+    display: block;
+}
+
+input {
+    height: 17px;
+    font-size: 15px;
+}
+
+.active-element {
+    background-color: #f5f5f5;
+}
