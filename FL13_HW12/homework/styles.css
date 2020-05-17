@@ -1,0 +1,53 @@
+.main-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.right-container {
+	border-width: 1px;
+    border-style: none;
+    border-image: none;
+}
+
+.left-container {
+	display: flex;
+	flex-direction: column;
+	border-width: 1px;
+    border-style: none;
+	border-image: none;
+	min-width: 200px;
+}
+
+.book-container {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+	margin-top: 20px;
+}
+
+.add-edit-form-button-container {
+	display: flex;
+	flex-direction: row;
+	margin-top: 20px;
+}
+
+.add-edit-form-container{
+	display: flex;
+    flex-direction: column;
+}
+
+.input-book-prop{
+	width: 200px;;
+}
+
+.label-book-prop{
+	margin-top: 8px;
+}
+
+.edit-buttons-prop{
+	margin-right: 15px;
+}
+
+.add-button {
+	margin-top: 15px;
+}
