@@ -1,24 +1,56 @@
-
-
+const booksData = [
+  {
+    id:1,
+    name: 'The Witcher',
+    author: 'Andrzej Sapkowski',
+    imageUrl: 'https://m.media-amazon.com/images/I/51PukMmLilL.jpg',
+    plot: 'The stories are set on an unnamed Continent, which was settled '
+  },
+  {
+    id:2,
+    name: 'A Game of Thrones',
+    author: 'George R. R. Martin',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/9/93/AGameOfThrones.jpg',
+    plot: 'Upon the death of Lord Jon Arryn, '
+  },  
+  {
+    id:3,
+    name: 'Harry Potter',
+    author: 'J. K. Rowling',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/uk/6/6c/HPandPhStone_Ukr.jpg',
+    plot: 'The central character in the series is Harry Potter, a boy who lives in'
+  },
+  {
+    id:4,
+    name: 'The Financier',
+    author: ' Theodore Dreiser',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/17/Financier.JPG',
+    plot: 'In Philadelphia, Frank Cowperwood, whose father is a banker, makes his '
+  }
+]
 const bookStorageKey = 'booksData';
 const rootElementSelector = 'root';
 const rightContainerSelector = 'right-container';
 const leftContainerSelector = 'left-container';
-const rootAppContainerSelector = 'root-app-container';
+const rootAppContainerSelector = 'root-app-container'
 const bookContainerSelector = 'book-container';
-const addEditFormButtonContainer = 'add-edit-form-button-container';
+const addEditFormButtonContainer = 'add-edit-form-button-container'
+const timeOut = 1000;
 
 function loadDataIntoStorage() {
   if(!localStorage.getItem(bookStorageKey)) {
-    localStorage.setItem(bookStorageKey, JSON.stringify());
+    localStorage.setItem(bookStorageKey, JSON.stringify(booksData));
   }  
 }
 
 function getBooksFromStorage() {
-	
+	let booksString = localStorage.getItem(bookStorageKey);
+	if(booksString) {
+		return JSON.parse(booksString);
+	}
 	
 	loadDataIntoStorage();
-	return;
+	return booksData;
 }
 
 function getRootElement() {
@@ -107,8 +139,9 @@ function createAppContainer() {
 
 function getBookById(bookId) {
   const books = getBooksFromStorage();
+  
   for(let i=0; i<books.length; i++) {
-    if(books[i].id === bookId) {
+    if(books[i].id === +bookId) {
       return books[i];
     }
   }
@@ -159,8 +192,8 @@ function openBookForEdit(bookId) {
 }
 
 function resizeIFrameToFitContent(iFrame) {
-  iFrame.width = "800px";
-  iFrame.height = "800px";
+  iFrame.width = '800px';
+  iFrame.height = '800px';
 }
 
 function createPreviewForm(bookToShow) {
@@ -174,13 +207,13 @@ function createPreviewForm(bookToShow) {
   authorDiv.innerHTML = bookToShow.author;
   previewInfoContainer.appendChild(authorDiv);
 
-  var bookImage = document.createElement("img");
+  let bookImage = document.createElement('img');
   bookImage.src = bookToShow.imageUrl;
   previewInfoContainer.appendChild(bookImage);
 
   let plotDiv = document.createElement('div');
-  plotDiv.innerHTML = "PLOT:" + bookToShow.plot;
-  plotDiv.width = "500px";
+  plotDiv.innerHTML = 'PLOT:' + bookToShow.plot;
+  plotDiv.width = '500px';
   previewInfoContainer.appendChild(plotDiv);
 
   return previewInfoContainer;
@@ -291,7 +324,7 @@ function addBook(name, author, url, plot) {
     window.alert('Book successfully added!');
     window.location.assign(window.location.href.split('/index.html')[0] 
     + `/index.html?id=${newBookId}#preview`);
-  }, 1000);
+  }, timeOut);
 }
 
 function editBook(name, author, url, plot) {
@@ -299,7 +332,7 @@ function editBook(name, author, url, plot) {
   const books = getBooksFromStorage();
   let bookToEdit;
   for(let i =0; i< books.length; i++){
-    if(books[i].id === bookToEditId) {      
+    if(books[i].id === +bookToEditId) {      
       bookToEdit = books[i];
       continue;
     }
@@ -313,7 +346,7 @@ function editBook(name, author, url, plot) {
     window.alert('Book successfully updated!');
     window.location.assign(window.location.href.split('/index.html')[0] 
         + `/index.html?id=${bookToEditId}#preview`);  
-  }, 1000);
+  }, timeOut);
 }
 
 window.onload = function() {
