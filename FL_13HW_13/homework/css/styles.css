@@ -1,0 +1,35 @@
+.navigation {
+    align-items: flex-end;
+}
+
+.navbar__text {
+    font-size: 30px;
+}
+
+
+.main__button, .footer__button {
+    background: rgb(255, 109, 68);
+}
+
+.main__button:hover, .footer__button:hover {
+    background: rgb(253, 75, 26);
+}
+
+.main, .header, .section, .footer {
+    padding: 3% 15% 3% 15%;
+    margin: 0;
+}
+
+.main {
+    padding: 0 15%;
+}
+
+.cards-item__description {
+    font-size: 12px;
+}
+
+@media (max-width: 767px) {
+    .navbar__button {
+        display: none;
+    }
+}
