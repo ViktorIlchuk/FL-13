@@ -128,5 +128,3 @@ Motorcycle.prototype.outputStopInformation = function() {
 }
 
 
-
-

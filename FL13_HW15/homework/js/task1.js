@@ -10,7 +10,3 @@ function asign(newObj) {
     console.log(newObj)
 }
 
-const painmentCard = {cash: '100$'};
-const creditCard = {creditLimit: '50$', cash: '200$'}
-
-const universalCard = asign({}, creditCard, painmentCard);
