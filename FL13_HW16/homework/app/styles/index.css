@@ -1,0 +1,12 @@
+.user {
+    display: flex;
+}
+
+.user div {
+    border: 1px solid gray;
+    width: 20%;
+}
+
+.disapear {
+    display: none;
+}
