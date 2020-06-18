@@ -25,15 +25,42 @@ let request = obj => {
 };
 
 function updateUser(event) {
-  const name = event.target.previousSibling
-  const fullName = name.previousSibling
+  const curentName = event.target.previousSibling
+  const fullName = curentName.previousSibling
   const parentNode = event.target.parentNode
-  const nameInput = document.createElement('input')
-  const fullNameInput = document.createElement('input')
-  parentNode.append(nameInput)
-  parentNode.append(fullNameInput)
-  name.classList.add('disapear')
+  const name = document.createElement('input')
+  const username = document.createElement('input')
+  const submitBtn = document.createElement('button')
+  const id = parentNode.firstChild.textContent;
+  submitBtn.textContent = 'Submit';
+  parentNode.append(name)
+  parentNode.append(username)
+  parentNode.append(submitBtn)
+  curentName.classList.add('disapear')
   fullName.classList.add('disapear')
+  submitBtn.addEventListener('click', () => {
+    if(name.value.length > 0 && username.value.length > 0) {
+      request({
+        method: 'PUT',
+        url: `${baseUrl}/users/${id}`,
+        body: JSON.stringify({
+          name: name.value, 
+          username: username.value
+        }),
+        headers: {
+          'Content-type': 'application/json',
+          'Authorization': 'admin'
+        }
+      })
+    }
+    curentName.textContent = name.value;
+    fullName.textContent = username.value;
+    curentName.classList.remove('disapear')
+    fullName.classList.remove('disapear')
+    name.classList.add('disapear')
+    username.classList.add('disapear')
+    submitBtn.classList.add('disapear')
+  })
 }
 
 const deleteUser = (userId, userElement) => {
